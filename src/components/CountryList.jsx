@@ -11,20 +11,20 @@ function CountryList({ cities, isLoading }) {
       <Message message="Add your first city by clicking on a city on the map." />
     );
 
-  const countries = cities.reduce((arr, city) => {
-    if (!arr.map((el) => el.country).includes(city.country)) {
-      return [...arr, { ...city }];
+  const countries = cities.reduce((acc, city) => {
+    if (!acc.map((el) => el.country).includes(city.country)) {
+      return [...acc, { ...city }];
     } else {
-      return arr;
+      return acc;
     }
   }, []);
 
-  console.log(countries);
+  // console.log(countries);
 
   return (
     <ul className={styles.countryList}>
       {countries.map((country) => (
-        <CountryItem country={country} key={country} />
+        <CountryItem country={country} key={country.country} />
       ))}
     </ul>
   );
