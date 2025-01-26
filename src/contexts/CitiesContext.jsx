@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const BASE_URL = "http://127.0.0.1:9000";
+// const BASE_URL = "http://127.0.0.1:9000";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 const CitiesContext = createContext();
 
 function CitiesProvider({ children }) {

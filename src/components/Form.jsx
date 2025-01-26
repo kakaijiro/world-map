@@ -4,13 +4,13 @@ import { useState } from "react";
 
 import styles from "./Form.module.css";
 import Button from "./Button";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import BackButton from "./BackButton";
 
 function Form() {
-  const naviate = useNavigate();
+  // const naviate = useNavigate();
   const [cityName, setCityName] = useState("");
-  const [country, setCountry] = useState("");
+  // const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
 
