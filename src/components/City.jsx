@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useCities } from "../contexts/CitiesContext";
 import { flagemojiToPNG } from "../utils/helper";
 import Spinner from "./Spinner";
-
+import BackButton from "./BackButton";
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
@@ -57,7 +57,9 @@ function City() {
         </a>
       </div>
 
-      <div>{/* <ButtonBack /> */}</div>
+      <div>
+        <BackButton />
+      </div>
     </div>
   );
 }
