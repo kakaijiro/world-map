@@ -19,6 +19,7 @@ import { flagemojiToPNG } from "../utils/helper";
 import { useMap, useMapEvent } from "react-leaflet";
 import { useGeolocation } from "../hooks/useGeolocation";
 import Button from "./Button";
+import { useUrlPosition } from "../hooks/useUrlPosition";
 
 // setting custom marker icon
 delete L.Icon.Default.prototype._getIconUrl;
@@ -31,15 +32,12 @@ L.Icon.Default.mergeOptions({
 function Map() {
   const { cities } = useCities();
   const [mapPosition, setMapPosition] = useState([51.505, -0.09]);
-  const [searchParams] = useSearchParams();
   const {
     position: geolocationPosition,
     isLoading: isLoadingPosition,
     getPosition,
   } = useGeolocation();
-
-  const mapLat = searchParams.get("lat");
-  const mapLng = searchParams.get("lng");
+  const [mapLat, mapLng] = useUrlPosition();
 
   useEffect(() => {
     if (geolocationPosition)
