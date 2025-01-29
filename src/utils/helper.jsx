@@ -24,3 +24,9 @@ export const countryCodeToPNG = (countryCode) => {
     />
   );
 };
+
+export function countryCodeToFlag(countryCode) {
+  return countryCode
+    .toUpperCase()
+    .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397));
+}
