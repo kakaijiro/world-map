@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useCallback,
+} from "react";
 
 // const BASE_URL = "http://127.0.0.1:9000";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -64,22 +70,25 @@ function CitiesProvider({ children }) {
     fetchData();
   }, []);
 
-  async function getCity(id) {
-    if (+id === currentCity.id) return;
+  const getCity = useCallback(
+    async function getCity(id) {
+      if (+id === currentCity.id) return;
 
-    dispatch({ type: "loading" });
-    try {
-      const res = await fetch(`${BASE_URL}/cities/${id}`);
-      const data = await res.json();
-      dispatch({ type: "city/loaded", payload: data });
-    } catch (err) {
-      dispatch({
-        type: "rejected",
-        payload: "There was an error loading the city...",
-      });
-      console.error(err);
-    }
-  }
+      dispatch({ type: "loading" });
+      try {
+        const res = await fetch(`${BASE_URL}/cities/${id}`);
+        const data = await res.json();
+        dispatch({ type: "city/loaded", payload: data });
+      } catch (err) {
+        dispatch({
+          type: "rejected",
+          payload: "There was an error loading the city...",
+        });
+        console.error(err);
+      }
+    },
+    [currentCity.id]
+  );
 
   async function createCity(newCity) {
     dispatch({ type: "loading" });
